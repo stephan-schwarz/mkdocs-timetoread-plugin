@@ -56,9 +56,9 @@ class TimeToRead(BasePlugin):
         for key, value in self.page_time_dict.items():
             if key == page.url:
                 if value > 1:
-                    wanted = f'</h1><p style="color:#{text_color}"><svg xmlns="http://www.w3.org/2000/svg" height="{clock_size}" width="{clock_size}"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"></path></svg> {text_before_minutes}{value} {text_after_minutes}</p>\n'
+                    wanted = f'</h1><p style="color:#{text_color}"><svg xmlns="http://www.w3.org/2000/svg" height="{clock_size}" width="{clock_size}" style="vertical-align: middle;"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"></path></svg> {text_before_minutes}{value} {text_after_minutes}</p>\n'
                 elif value == 1:
-                    wanted = f'</h1><p style="color:#{text_color}"><svg xmlns="http://www.w3.org/2000/svg" height="{clock_size}" width="{clock_size}"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"></path></svg> {text_before_minutes}{value} {text_after_minutes}</p>\n'
+                    wanted = f'</h1><p style="color:#{text_color}"><svg xmlns="http://www.w3.org/2000/svg" height="{clock_size}" width="{clock_size}" style="vertical-align: middle;"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"></path></svg> {text_before_minutes}{value} {text_after_minutes}</p>\n'
                 elif value == False:
                     return output
                 else: 
