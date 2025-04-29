@@ -14,6 +14,8 @@ class TimeToRead(BasePlugin):
         ('wpm', config_options.Type(int, default=255)),
         ('allPages', config_options.Type(bool, default=True)),
         ('textColor', config_options.Type(str, default="bdbdbd")),
+        ('textBeforeMinutes', config_options.Type(str, default="")),
+        ('textAfterMinutes', config_options.Type(str, default="min read")),
         ('substitute', config_options.Type(str, default="</h1>")),
 
     )
@@ -45,14 +47,16 @@ class TimeToRead(BasePlugin):
 
     def on_post_page(self, output: str, page, config: Config):
         text_color = self.config['textColor']
+        text_before_minutes = self.config['textBeforeMinutes']
+        text_after_minutes = self.config['textAfterMinutes']
         sub = self.config['substitute']
 
         for key, value in self.page_time_dict.items():
             if key == page.url:
                 if value > 1:
-                    wanted = f'</h1><p style="color:#{text_color}"><i>Estimated time to read: {value} minutes</i></p>\n'
+                    wanted = f'</h1><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"></path></svg><p style="color:#{text_color}">{text_before_minutes}{value} {text_after_minutes}</p>\n'
                 elif value == 1:
-                    wanted = f'</h1><p style="color:#{text_color}"><i>Estimated time to read: {value} minute</i></p>\n'
+                    wanted = f'</h1><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"></path></svg><p style="color:#{text_color}">{text_before_minutes}{value} {text_after_minutes}</p>\n'
                 elif value == False:
                     return output
                 else: 
